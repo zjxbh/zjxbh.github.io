@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>猜数字小游戏</title>
+		<style type="text/css">
+			body {
+				position: relative;
+				background-color: pink;
+				color:#fff;
+				text-shadow:1px 1px 1px rgba(0,0,0,.2);
+			}
+			
+			.all {
+				width: 300px;
+				height: 150px;
+				position: absolute;
+				top: 150px;
+				/*bottom: 0;*/
+				left: 50px;
+				right: 0;
+				margin: auto;
+			}
+			#ok{
+				color:#000;
+			}
+			#re{
+				color:#f00;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="all">
+			<h2>猜数字小游戏</h2>
+			<p>请输入10以内的正整数，你有六次机会</p>
+			<input type="number" min="1" max="10" id="num" />
+			<a href="#" id="ok">提交</a>
+			<a href="#" id="re">重来</a>
+			<div id="time">本局游戏剩余机会次数：<span></span>
+			</div>
+			<div id="info">猜测记录：
+				<br>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var rightnumb = Math.floor(Math.random() * 10);
+			var times = 6;
+			var ook = document.getElementById('ok');
+			var ore = document.getElementById('re');
+			var onum = document.getElementById('num');
+			var oinfo = document.getElementById('info');
+			var otime = document.querySelector('#time span');
+			ook.addEventListener('click', clickIt);
+			ore.addEventListener('click', rep)
+			otime.innerHTML = times;
+
+			function clickIt() {
+				var numb = onum.value;
+				console.log(rightnumb);
+				if(times == 0) oinfo.innerHTML += '游戏失败' + '<br>'
+				else {
+					if(numb == 0) alert("请先输入");
+					else {
+						if(onum.value>10||onum.value<0)alert("请输入1-10之间的整数");
+						else{
+						if(numb > rightnumb) {
+							oinfo.innerHTML += '你的数字' + numb + '有点大' + '<br>'
+						} else {
+							if(numb == rightnumb) oinfo.innerHTML += '恭喜你猜对了' + '<br>'
+							else
+								oinfo.innerHTML += '你的数字' + numb + '有点小' + '<br>'
+						}
+						otime.innerHTML = --times;
+						}
+					}
+				}
+			}
+			function rep() {
+				rightnumb = Math.floor(Math.random() * 10+1);
+				times = 6;
+				otime.innerHTML = times;
+				oinfo.innerHTML += '开始了一盘新的游戏<br>'
+				console.log(rightnumb);
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>模拟时钟</title>
+		<style>
+			body {
+				position: relative;
+			}
+			.a {
+				position: relative;
+				width: 146px;
+				top: 50px;
+				margin: auto;
+			}
+			.clock {
+				width: 400px;
+				height: 400px;
+				background: url(img/1.jpg);
+				background-size: 100% 100%;
+				position: absolute;
+				top: 600px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.hour {
+				width: 10px;
+				height: 90px;
+				background-color: black;
+				transform-origin: bottom center;
+				position: absolute;
+				left: 197px;
+				top: 115px;
+			}
+			.minute {
+				width: 8px;
+				height: 110px;
+				background-color: darkgray;
+				transform-origin: bottom center;
+				position: absolute;
+				left: 197px;
+				top: 95px;
+			}
+			.second {
+				width: 6px;
+				height: 130px;
+				background-color: #f00;
+				transform-origin: bottom center;
+				position: absolute;
+				left: 197px;
+				top: 75px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="a"></div>
+		<div class="clock">
+			<div class="hour"></div>
+			<div class="minute"></div>
+			<div class="second"></div>
+		</div>
+		<script type="text/javascript">
+			var now = new Date();
+			var hou, min, sec;
+			var oClock = document.querySelector('.clock');
+			var ohour = document.querySelector('.hour');
+			var ominute = document.querySelector('.minute');
+			var osecond = document.querySelector('.second');
+			var oa = document.querySelector('.a')
+			function refresh() {
+				now = new Date();
+				hou = now.getHours() + now.getMinutes() / 60;
+				min = now.getMinutes() + now.getSeconds() / 60;
+				sec = now.getSeconds();
+				ohour.style.transform = "rotate(" + hou * 30 + "deg)";
+				ominute.style.transform = "rotate(" + min * 6 + "deg)";
+				osecond.style.transform = "rotate(" + sec * 6 + "deg)";
+				oa.innerHTML = "现在时间为" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+			}
+			setInterval(refresh, 1000);
+		</script>
+	</body>
+</html>

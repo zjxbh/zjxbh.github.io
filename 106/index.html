@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>打字效果</title>
+		<style type="text/css">
+			body{
+				height: 100%;
+				background:pink;
+				color:white;
+			}
+			h1,h2{
+				margin: 100px;
+				font-size: 6em;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 id="textone">I'm practicing typing.</h1>
+		<h2 id="texttwo">我正在练习打字。</h2>
+		<script type="text/javascript">
+			var otextone=document.getElementById('textone');
+			var otexttwo=document.getElementById('texttwo');
+			function typetext(ele, speed, loop) {
+				var str = ele.innerText,
+				i = 0,
+				loop = loop || false;
+				ele.innerText="";
+				var a = setInterval(function() {
+					if(i < str.length) {
+						ele.innerText += str[i];
+					} else {
+						if(loop) {
+							i = -1;
+							ele.innerText = "";
+						} else {
+							clearInterval(a);
+						}
+					}
+					i++;
+				}, speed);
+
+			}
+			typetext(otextone, 100);
+			typetext(otexttwo, 260, true);
+		</script>
+
+	</body>
+
+</html>

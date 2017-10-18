@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>tab选项卡</title>
+	</head>
+	<style type="text/css">
+		body {
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		input {
+			margin: 50px;
+		}
+		
+		div {
+			width: 500px;
+			height: 200px;
+			margin: auto;
+			display: none ;
+			line-height: 100px;
+		}
+	</style>
+
+	<body>
+		<input type="button" id="1" value="RED" />
+		<input type="button" id="2" value="YELLOW" />
+		<input type="button" id="3" value="BLUE" />
+		<div id="1" style="background-color: red;">I am red.</div>
+		<div id="2" style="background-color: yellow;">I am yellow.</div>
+		<div id="3" style="background-color: blue;">I am blue.</div>
+		<script type="text/javascript">
+			var obtns = document.querySelectorAll('input');
+			var ocont = document.querySelectorAll('div')
+
+			for(var i = 0; i < obtns.length; i++) {
+
+				obtns[i].addEventListener('click', (function(n) {
+
+					return function() {
+						for(var j = 0; j < obtns.length; j++) {
+							if(j == n) {
+								ocont[j].style.display = "block";
+							} else if(j < n) {
+								ocont[j].style.display = "none";
+							} else if(j > n) {
+								ocont[j].style.display = "none";
+							}
+						}
+						ocont[n].style.display = "block";
+					};
+				})(i));
+
+			}
+		</script>
+	</body>
+
+</html>

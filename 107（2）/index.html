@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>真正的tab选项卡</title>
+	</head>
+	<style type="text/css">
+		body {
+			margin: 0 auto;
+			text-align: center;
+			position: relative;
+			left: 300px;
+		}
+		
+		.tab {
+			float: left;
+			margin: 30px 10px;
+			padding: 10px 30px;
+			border-radius: 10px 10px 0px 0px;
+		}
+		
+		.tabc {
+			position: absolute;
+			top: 68px;
+			left: 10px;
+			width: 700px;
+			height: 400px;
+			margin: auto;
+			display: none;
+			line-height: 200px;
+			border-radius: 0px 6px 6px 6px;
+		}
+		p{
+			height: 80px;
+			margin: 0;
+		}
+	</style>
+
+	<body>
+		<div class="tab" style="background-color:red ;">RED</div>
+		<div class="tab" style="background-color:yellow ;">YELLOW</div>
+		<div class="tab" style="background-color:blue ;">BLUE</div>
+		<div class="tab" style="background-color:pink ;">PINK</div>
+		<div class="tab" style="background-color:skyblue ;">SKYBLUE</div>
+		<div class="tab" style="background-color:white ;">WHITE</div>
+		<div class="tabc" style="background-color: red;">I am red.</div>
+		<div class="tabc" style="background-color: yellow;">I am yellow.</div>
+		<div class="tabc" style="background-color: blue;">I am blue.</div>
+		<div class="tabc" style="background-color: pink;">I am pink.</div>
+		<div class="tabc" style="background-color: skyblue;">I am skyblue.</div>
+		<div class="tabc" style="background-color: white;"><p>Can you see me?</p>I am right here!!!</div>
+		<script type="text/javascript">
+			var obtns = document.querySelectorAll('.tab');
+			var ocont = document.querySelectorAll('.tabc')
+			for(var i = 0; i < obtns.length; i++) {
+				obtns[i].addEventListener('click', (function(n) {
+					return function() {
+						for(var j = 0; j < obtns.length; j++) {
+							if(j == n) {
+								ocont[j].style.display = "block";
+							} else if(j < n) {
+								ocont[j].style.display = "none";
+							} else if(j > n) {
+								ocont[j].style.display = "none";
+							}
+						}
+						ocont[n].style.display = "block";
+					};
+				})(i));
+			}
+		</script>
+	</body>
+
+</html>

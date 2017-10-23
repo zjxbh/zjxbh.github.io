@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>真正的tab选项卡</title>
+	</head>
+	<style type="text/css">
+		body {
+			margin: 0 auto;
+			text-align: center;
+			position: relative;
+			left: 400px;
+		}
+		
+		.tab {
+			float: left;
+			margin: 30px 8px;
+			padding: 10px 30px;
+			border-radius: 10px 10px 0px 0px;
+		}
+		
+		.tabc {
+			position: absolute;
+			top: 68px;
+			left: 8px;
+			width: 732px;
+			height: 400px;
+			margin: auto;
+			display: none;
+			line-height: 200px;
+			border-radius: 0px 0px 6px 6px;
+		}
+		
+		p {
+			height: 75px;
+			margin: 0;
+		}
+		
+		#btn {
+			position: absolute;
+			left: 335px;
+			top: 290px;
+			right: 0;
+			margin: auto;
+		}
+		
+		.on {
+			display: none;
+		}
+		
+		.text {
+			margin: 20px;
+		}
+	</style>
+
+	<body>
+		<div class="tab" style="background-color:red ;">RED</div>
+		<div class="tab" style="background-color:yellow ;">YELLOW</div>
+		<div class="tab" style="background-color:blue ;">BLUE</div>
+		<div class="tab" style="background-color:pink ;">PINK</div>
+		<div class="tab" style="background-color:skyblue ;">SKYBLUE</div>
+		<div class="tab" style="background-color:white ;">WHITE</div>
+		<div class="tabc" style="background-color: red;">I am red.</div>
+		<div class="tabc" style="background-color: yellow;">I am yellow.</div>
+		<div class="tabc" style="background-color: blue;">I am blue.</div>
+		<div class="tabc" style="background-color: pink;">I am pink.</div>
+		<div class="tabc" style="background-color: skyblue;">I am skyblue.</div>
+		<div class="tabc" style="background-color: white;">
+			<p>Can you see me?</p>
+			<p>I am right here!!!</p>
+			<p>不信你试试关灯</p>
+			<input type="button" value="关灯" onclick="off()" id="btn" class="off" />
+			<input type="button" value="开灯" onclick="on()" id="btn" class="on" />
+			<p class="text"></p>
+		</div>
+
+		<script type="text/javascript">
+			var Body = document.querySelector('body');
+			var obtns = document.querySelectorAll('.tab');
+			var ocont = document.querySelectorAll('.tabc');
+			var oon = document.querySelector(".on");
+			var ooff = document.querySelector(".off");
+			var ot = document.querySelector('.text');
+			for(var i = 0; i < obtns.length; i++) {
+				obtns[i].addEventListener('click', (function(n) {
+					return function() {
+						for(var j = 0; j < obtns.length; j++) {
+							if(j == n) {
+								ocont[j].style.display = "block";
+							} else if(j < n) {
+								ocont[j].style.display = "none";
+							} else if(j > n) {
+								ocont[j].style.display = "none";
+							}
+						}
+						ocont[n].style.display = "block";
+					};
+				})(i));
+			}
+
+			function off() {
+				Body.style.backgroundColor = "black";
+				ooff.style.display = "none";
+				oon.style.display = "block";
+				ot.innerText = '记得开灯噢~';
+			}
+
+			function on() {
+				Body.style.backgroundColor = "white";
+				oon.style.display = "none";
+				ooff.style.display = "block";
+				ot.innerText = '';
+			}
+		</script>
+	</body>
+
+</html>

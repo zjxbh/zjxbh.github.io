@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>提示框</title>
 		<style type="text/css">
 			p{
 				text-align: center;
@@ -12,18 +12,20 @@
 			a {
 				position: relative;
 				display: inline-block;
-				margin: 60px;
+				margin: 70px;
 			}
 			
 			span {
 				display: none;
-				width: 80px;
+				width: 130px;
+				height: 24px;
 				position: absolute;
 				top: -30px;
-				left: -30px;
+				left: -46px;
 				background: black;
 				color: white;
 				text-align: center;
+				border-radius: 6px;
 			}
 			
 			a:hover span {
@@ -39,21 +41,21 @@
 			
 			.toolitp[data-direction="top"] span::after {
 				top: 100%;
-				left: 40%;
+				left: 36%;
 				border: 8px solid #000;
 				border-color: black transparent transparent;
 			}
 			
 			.toolitp[data-direction="botton"] span {
 				top: 30px;
-				left: -30px;
+				left: -50px;
 				background: black;
 				color: white;
 				text-align: center;
 			}
 			
 			.toolitp[data-direction="botton"] span::after {
-				top: -75%;
+				top: -68%;
 				left: 38%;
 				border: 8px solid #000;
 				border-color: transparent transparent black;
@@ -61,15 +63,15 @@
 			
 			.toolitp[data-direction="left"] span {
 				top: 0px;
-				left: -90px;
+				left: -140px;
 				background: black;
 				color: white;
 				text-align: center;
 			}
 			
 			.toolitp[data-direction="left"] span::after {
-				top: 3px;
-				left: 80px;
+				top: 4px;
+				left: 129px;
 				border: 8px solid #000;
 				border-color: transparent transparent transparent black;
 			}
@@ -83,7 +85,7 @@
 			}
 			
 			.toolitp[data-direction="right"] span::after {
-				top: 3px;
+				top: 4px;
 				left: -16px;
 				border: 8px solid #000;
 				border-color: transparent black transparent transparent;
@@ -107,13 +109,13 @@
 				var contentbotton = document.createElement("span");
 				var contentleft = document.createElement("span");
 				var contentright = document.createElement("span");
-				contenttop.innerHTML = "";
+				contenttop.innerHTML = "去看看“下”";
 				top.appendChild(contenttop);
-				contentbotton.innerHTML = "2";
+				contentbotton.innerHTML = "去看“左”吧";
 				botton.appendChild(contentbotton);
-				contentleft.innerHTML = "3";
+				contentleft.innerHTML = "真在“右”啦";
 				left.appendChild(contentleft);
-				contentright.innerHTML = "4";
+				contentright.innerHTML = "呀，被你发现啦";
 				right.appendChild(contentright);
 
 			})();

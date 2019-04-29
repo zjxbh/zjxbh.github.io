@@ -50,88 +50,44 @@
 				width: 65px;
 				height: 25px;
 			}
-			
-/*			.all{
-				margin: 0 auto;
-				width: 650px;
-				height: auto;
-				position: relative;
-			}
-			.show{
-				position: absolute;
-				top: 0;
-				right: 0;
-				margin: 50px 0;
-				font: 600 16px/1.8em Verdana;
-			}
-			.shell{
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 300px;
-				height: 300px;
-				border: black 5px solid;
-				background: white;
-			}*/
 		</style>
 		<div class="show">
 			<b>计时:</b><em id="times">00:00</em>
 			<b>步数:</b><em id="steps">0</em>
-<!--			<b>最佳用时：00:30</b>
-			<b>最佳步数：5</b>-->
 		</div>
 		<div id="shell" class="shell"></div>
 		<div class="operation">
-			<input type="button" id="three" value="3 * 3" onclick="three()"/>
-			<input type="button" id="four" value="4 * 4" onclick="four()"/>
-			<input type="button" id="five" value="5 * 5" onclick="five()"/>
-			<!--<p style="display: inline;">难度</p>-->
+			<input type="button" id="three" value="3 * 3" onclick="three()" />
+			<input type="button" id="four" value="4 * 4" onclick="four()" />
+			<input type="button" id="five" value="5 * 5" onclick="five()" />
 			<select id="hard" style="height: 25px;width: 85PX;">
 				<option value="40">简单模式</option>
 				<option value="100">一般模式</option>
 				<option value="200">困难模式</option>
 			</select>
-			<input type="button" id="restart" value="重新开始" onclick="restart()"/>
+			<input type="button" id="restart" value="重新开始" onclick="restart()" />
 		</div>
-		<!--<div class="all">
-			<div id="shell" class="shell"></div>
-			<div class="show">
-		    <p>计时:<em id="times">00:00</em></p>
-			<p>步数:<em id="steps">0</em></p>
-			<p>最佳用时：00:30</p>
-			<p>最佳步数：5</p>
-			<input type="button" id="star" value="开始" style="width: 65px;height: 23px;" /><br />
-			<input type="button" id="reset" value="重置" style="width: 65px;height: 23px;" /><br />
-			<select id="hard">
-			</select>
-		</div>
-		</div>-->
 
 		<script type="text/javascript">
 			var nn = 3;
 			speller = {
-				timer:null,
-				num:3,
+				timer: null,
+				num: 3,
 				init: function(n) {
 					this.hard = n || 5;
-/*					||在此处没有作用,游戏结束时调用me.init();时没有参数写的*/
 					this.step = this.useTime = 0;
-					this.blank = this.num*this.num-1;
+					this.blank = this.num * this.num - 1;
 					this.createGrid();
 					document.getElementById("times").innerHTML = "00:00";
 					document.getElementById("steps").innerHTML = this.step;
 					clearInterval(this.timer);
-//					if(this.timer){
-//						clearInterval(this.timer);
-//					}
 					this.timer = setInterval(function() {
-						speller.useTime++; /* 累加时间并格式化显示 */
+						speller.useTime++;
 						document.getElementById("times").innerHTML = ('0' + parseInt(speller.useTime / 60)).slice(-2) + ':' + ('0' + speller.useTime % 60).slice(-2);
 					}, 1000);
 				},
-				//init结束
+
 				createGrid: function() {
-//					var num_= this.nn;
 					var X = function(n) {
 							return n % this.nn * 100;
 						},
@@ -139,30 +95,29 @@
 						Y = function(n) {
 							return parseInt(n / this.nn) * 100;
 						};
-					for(var i = 0, html = []; i < this.num*this.num; i++) {
+					for(var i = 0, html = []; i < this.num * this.num; i++) {
 						html.push('<p onclick="speller.move(this);" id="' + i + '" class="' + i + '"  style="background: url(img/' + this.num + '.jpg) no-repeat 0 0;left:' + X(i) + 'px;top:' + Y(i) + 'px;background-position:-' + X(i) + 'px -' + Y(i) + 'px;"></p>');
 					}
 					document.getElementById("shell").innerHTML = html.join('');
 					this.random();
 				},
-				//createGrid结束
 				random: function(p) {
 					var ps = document.getElementById("shell").getElementsByTagName("P"),
 						l = ps.length,
-						me = this; //？？？
+						me = this;
 					ps[this.blank].style.display = "none";
 					var en = function(n) {
 						var arr = [];
-						if(n < this.nn*this.nn-1 && n % this.nn != this.nn-1) {
+						if(n < this.nn * this.nn - 1 && n % this.nn != this.nn - 1) {
 							arr.push(n + 1);
 						}
 						if(n > 0 && n % this.nn != 0) {
 							arr.push(n - 1);
 						}
-						if(n > this.nn-1) {
+						if(n > this.nn - 1) {
 							arr.push(n - this.nn);
 						}
-						if(n < this.nn*2) {
+						if(n < this.nn * 2) {
 							arr.push(n + this.nn);
 						}
 						return arr[parseInt(Math.random() * arr.length)] * 1;
@@ -178,7 +133,7 @@
 						this.move2(getp(en(this.blank * 1)));
 					}
 				},
-				//random结束
+
 				move2: function(p) {
 					var pos = p.className * 1,
 						POS = this.blank * 1,
@@ -189,9 +144,9 @@
 					p.className = POS;
 					this.blank = pos;
 				},
-				//move2结束
+
 				move: function(p) {
-					var self_=this;
+					var self_ = this;
 					var pos = p.className * 1,
 						POS = this.blank * 1,
 						abs = Math.abs(pos - POS),
@@ -210,7 +165,6 @@
 					p.className = POS;
 					this.blank = pos;
 					document.getElementById("steps").innerHTML = ++this.step;
-					//以下是check
 					if(this.check()) {
 						var last = document.getElementById("shell").getElementsByTagName("P")[this.blank];
 						last.style.display = "block";
@@ -220,12 +174,11 @@
 							last.style.filter = "alpha(opacity=" + x + ")";
 						}, function() {
 							clearInterval(self_.timer);
-							alert('完成了!你真棒!');
-							//me.init();再来一次
+							alert("恭喜你完成了!");
 						}, 200, 1)
 					}
 				},
-				//move结束
+
 				check: function() {
 					var p = document.getElementById("shell").getElementsByTagName("P");
 					for(var i = 0, l = p.length; i < l; i++) {
@@ -235,8 +188,7 @@
 					}
 					return true;
 				},
-				//check结束
-				//用于检查是否已完成游戏
+
 				fx: function(f, t, fn, end, tm, pow) {
 					var D = Date,
 						d = new D,
@@ -245,7 +197,6 @@
 					return e = setInterval(function() {
 						var z = Math.min(1, (new D - d) / c);
 						(false === fn(+f + (t - f) * Math.pow(z, pow), z) || z == 1) && end && end(clearInterval(e));
-/*						clearTimeout();与clearInterval();可以互用,再看看*/
 					}, 10);
 				}
 			}
@@ -254,28 +205,32 @@
 				speller.init(this.value);
 			}
 			document.all && document.execCommand("BackgroundImageCache", false, true);
-			function three(){
+
+			function three() {
 				speller.num = 3;
 				nn = 3;
 				document.getElementById("shell").style.width = 300 + "px";
 				document.getElementById("shell").style.height = 300 + "px";
 				speller.init(document.getElementById("hard").value);
 			}
-			function four(){
+
+			function four() {
 				speller.num = 4;
 				nn = 4;
 				document.getElementById("shell").style.width = 400 + "px";
 				document.getElementById("shell").style.height = 400 + "px";
 				speller.init(document.getElementById("hard").value);
 			}
-			function five(){
+
+			function five() {
 				speller.num = 5;
 				nn = 5;
 				document.getElementById("shell").style.width = 500 + "px";
 				document.getElementById("shell").style.height = 500 + "px";
 				speller.init(document.getElementById("hard").value);
 			}
-			function restart(){
+
+			function restart() {
 				speller.init(document.getElementById("hard").value);
 			}
 		</script>
